@@ -1,25 +1,15 @@
 <template>
   <div>
-    <ul>
-      <cart-item 
-      v-for="storedproduct in storedproducts" 
-      :key="storedproduct.id"
-      :title="storedproduct.title"
-      :description="storedproduct.description"
-      :image="storedproduct.image"
-      :price="storedproduct.price"
-      :link="storedproduct.link"></cart-item>
-    </ul>
+    <stored-cart-items :cart="storedproducts"></stored-cart-items>
   </div>
 </template>
 
 <script>
-
-import CartItem from './components/CartItem.vue';
+import StoredCartItems from './components/StoredCartItems.vue';
 
 export default {
   components:{
-    'cart-item': CartItem
+    'stored-cart-items': StoredCartItems
   },
 
   data(){
@@ -47,4 +37,20 @@ export default {
   }
 }
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+</style>
 
