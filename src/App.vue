@@ -9,7 +9,7 @@ import StoredCartItems from './components/StoredCartItems.vue';
 
 export default {
   components:{
-    'stored-cart-items': StoredCartItems
+    'stored-cart-items': StoredCartItems,
   },
 
   data(){

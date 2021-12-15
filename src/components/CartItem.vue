@@ -1,22 +1,24 @@
 <template>
     <li>
-        <div>
+        <base-card>
             <header>
                 <h3>{{ title }}</h3>
                 <button>Remove Item</button>
             </header>
-        </div>
-        <p>{{ description }}</p>
-        <img :src="image">
-        <p>{{ price }}</p>
-        <nav>
-            <a :href="link">View Details</a>
-        </nav>
+            <p>{{ description }}</p>
+            <img :src="image">
+            <p>{{ price }}</p>
+            <nav>
+                <a :href="link">View Details</a>
+            </nav>
+        </base-card>
     </li>
 </template>
 
 <script>
-export default{
+
+export default{   
+
     // props: ['title', 'description', 'image', 'price', 'link']
     props:{
         title:{
