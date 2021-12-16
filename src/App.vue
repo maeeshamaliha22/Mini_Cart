@@ -1,15 +1,18 @@
 <template>
   <div>
+    <the-header title="Mini Cart"></the-header>
     <stored-cart-items :cart="storedproducts"></stored-cart-items>
   </div>
 </template>
 
 <script>
 import StoredCartItems from './components/StoredCartItems.vue';
+import TheHeader from './components/TheHeader.vue'
 
 export default {
   components:{
     'stored-cart-items': StoredCartItems,
+    'the-header': TheHeader
   },
 
   data(){
