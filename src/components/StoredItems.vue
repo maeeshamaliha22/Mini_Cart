@@ -15,11 +15,14 @@
 <script>
 import CartItem from './CartItem.vue';
 export default{
+  
+    inject:['cart'],
+
     components:{
         'cart-item': CartItem
     },
 
-    props:['cart']
+    
 }
 </script>
 
