@@ -3,7 +3,7 @@
         <base-card>
             <header>
                 <h3>{{ title }}</h3>
-                <button>Remove Item</button>
+                <base-button mode="flat">Remove Item</base-button>
             </header>
             <p>{{ description }}</p>
             <img :src="image">
@@ -78,5 +78,11 @@ a {
 a:hover,
 a:active {
   color: #c89300;
+}
+
+img{
+  width: 21%;
+  display: block;
+  margin: inherit;
 }
 </style>

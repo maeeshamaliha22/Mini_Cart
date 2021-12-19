@@ -7,7 +7,7 @@
 
 <script>
 import StoredCartItems from './components/StoredCartItems.vue';
-import TheHeader from './components/TheHeader.vue'
+import TheHeader from './components/TheHeader.vue';
 
 export default {
   components:{
