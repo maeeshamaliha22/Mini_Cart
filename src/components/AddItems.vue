@@ -1,30 +1,49 @@
 <template>
-    <base-card>
-        <form class="form-control" @submit="submitForm">
-            <label for="title">Title</label>
-            <input id="title" name="title" type="text" ref="titleInput"/>
-           
-            <label for="description">Description</label>
-            <textarea id="description" name="description" rows="3" ref="descInput"></textarea>
+    <div>
+        <base-dialog v-if="inputIsInvalid" title="Invalid Output">
+            <template #default>
+                <p>Unfortunately, at least one input value is invalid.</p>
+                <p>Please check all inputs and make sure you enter a least a few characters into each input field.</p>
+            </template>
+            <template #actions>
+                <base-button @click.native="confirmError">Okay</base-button>
+            </template>
+        </base-dialog>
+        <base-card>
+            <form class="form-control" @submit.prevent="submitForm">
+                <label for="title">Title</label>
+                <input id="title" name="title" type="text" ref="titleInput"/>
+            
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="3" ref="descInput"></textarea>
 
-            <label for="image">Image</label>
-            <input id="image" name="image" type="text"/>
-            <button>Upload </button>
-        
-            <label for="price">Price</label>
-            <input id="price" name="price" type="text" ref="priceInput"/>
-        
-            <label for="link">Link</label>
-            <input id="link" name="link" type="url" ref="linkInput"/>
-        
-            <base-button type="submit" mode="submit">Add Product</base-button>   
-        </form>
-    </base-card>
+                <label for="image">Image</label>
+                <input id="image" name="image" type="text"/>
+                <button>Upload </button>
+            
+                <label for="price">Price</label>
+                <input id="price" name="price" type="text" ref="priceInput"/>
+            
+                <label for="link">Link</label>
+                <input id="link" name="link" type="url" ref="linkInput"/>
+            
+                <base-button type="submit" mode="submit">Add Product</base-button>   
+            </form>
+        </base-card>
+    </div>
 </template>
 
 <script>
-export default { 
+import BaseDialog from './BaseDialog.vue';
+export default {
+  components: { BaseDialog }, 
     inject: ['addProduct'],
+
+    data(){
+        return{
+            inputIsInvalid :  false
+        }  
+    },
 
     methods:{
         submitForm(){
@@ -33,8 +52,20 @@ export default {
             const enteredPrice = this.$refs.priceInput.value;
             const enteredLink = this.$refs.linkInput.value;
 
+            if(enteredTitle.trim() === '' || 
+            enteredDesc.trim() === '' ||
+            enteredPrice.trim() === '' ||
+            enteredLink.trim() === ''){
+                this.inputIsInvalid = true;
+                return;
+            }
+
             this.addProduct(enteredTitle, enteredDesc, enteredPrice, enteredLink)
              
+        },
+
+        confirmError(){
+            this.inputIsInvalid = false
         }
     }
 }
