@@ -1,10 +1,13 @@
 <template>
-    <base-card>
-        <base-button v-on:click.native="setSelectedTab('add-items')">Add Products</base-button>
-        <base-button v-on:click.native="setSelectedTab('stored-items')">Products In Cart</base-button>
-        <component :is="storedTab"></component>
-    </base-card>
-    
+    <div>
+        <base-card>
+            <base-button v-on:click.native="setSelectedTab('add-items')">Add Products</base-button>
+            <base-button v-on:click.native="setSelectedTab('stored-items')">Products In Cart</base-button>
+        </base-card>
+        <keep-alive>
+            <component :is="storedTab"></component>
+        </keep-alive>
+    </div>
 </template>
 
 
@@ -48,12 +51,25 @@ export default {
     methods: {
         setSelectedTab(tab){
             this.storedTab = tab
+        },
+
+        addProduct(title, desc, price, url){
+            const newProduct = {
+                id: new Date().toISOString(),
+                title: title,
+                description: desc,
+                price: price,
+                link: url
+            };
+            this.storedproducts.push(newProduct);
+            this.storedTab = 'stored-items';
         }
     },
 
     provide(){
         return{
-            cart: this.storedproducts
+            cart: this.storedproducts,
+            addProduct: this.addProduct
         }
     },
 
