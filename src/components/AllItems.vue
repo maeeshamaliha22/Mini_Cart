@@ -1,8 +1,8 @@
 <template>
     <div>
         <base-card>
-            <base-button v-on:click.native="setSelectedTab('add-items')">Add Products</base-button>
-            <base-button v-on:click.native="setSelectedTab('stored-items')">Products In Cart</base-button>
+            <base-button @click.native="setSelectedTab('add-items')" :mode="addProductButtonMode">Add Products</base-button>
+            <base-button @click.native="setSelectedTab('stored-items')" :mode="storedProductButtonMode">Products In Cart</base-button>
         </base-card>
         <keep-alive>
             <component :is="storedTab"></component>
@@ -48,6 +48,16 @@ export default {
         };
     },
 
+    computed:{
+        addProductButtonMode(){
+            return this.storedTab === 'add-items' ? 'flat' : null
+        },
+
+        storedProductButtonMode(){
+            return this.storedTab === 'stored-items' ? 'flat' : null
+        }
+    },
+
     methods: {
         setSelectedTab(tab){
             this.storedTab = tab
@@ -63,13 +73,19 @@ export default {
             };
             this.storedproducts.push(newProduct);
             this.storedTab = 'stored-items';
+        },
+
+        removeProduct(prodId){
+            const prodIndex = this.storedproducts.findIndex(prod => prod.id === prodId);
+            this.storedproducts.splice(prodIndex, 1);
         }
     },
 
     provide(){
         return{
             cart: this.storedproducts,
-            addProduct: this.addProduct
+            addProduct: this.addProduct,
+            removeProduct: this.removeProduct
         }
     },
 

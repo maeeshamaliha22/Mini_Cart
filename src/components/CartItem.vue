@@ -3,7 +3,7 @@
         <base-card>
             <header>
                 <h3>{{ title }}</h3>
-                <base-button mode="flat">Remove Item</base-button>
+                <base-button mode="flat" @click.native="removeProduct(id)">Remove Item</base-button>
             </header>
             <p>{{ description }}</p>
             <img :src="image">
@@ -18,9 +18,14 @@
 <script>
 
 export default{   
-
+    inject: ['removeProduct'],
     // props: ['title', 'description', 'image', 'price', 'link']
     props:{
+        id:{
+            type:String,
+            required: true
+        },
+
         title:{
             type:String,
             required: true

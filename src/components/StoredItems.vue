@@ -3,6 +3,7 @@
       <cart-item 
       v-for="storedproduct in cart" 
       :key="storedproduct.id"
+      :id="storedproduct.id"
       :title="storedproduct.title"
       :description="storedproduct.description"
       :image="storedproduct.image"
