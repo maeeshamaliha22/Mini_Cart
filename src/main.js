@@ -8,7 +8,7 @@ Vue.config.productionTip = false
 
 Vue.component('base-card', BaseCard)
 Vue.component('base-button', BaseButton)
-Vue.component('base-dialogu', BaseDialog)
+Vue.component('base-dialog', BaseDialog)
 new Vue({
   render: h => h(App),
 }).$mount('#app')

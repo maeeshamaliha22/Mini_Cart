@@ -3,7 +3,7 @@
         <base-dialog v-if="inputIsInvalid" title="Invalid Output" @close="confirmError">
             <template #default>
                 <p>Unfortunately, at least one input value is invalid.</p>
-                <p>Please check all inputs and make sure you enter a least a few characters into each input field.</p>
+                <p>Please check all inputs and make sure you enter at least a few characters into each input field.</p>
             </template>
             <template #actions>
                 <base-button @click.native="confirmError">Okay</base-button>
@@ -36,7 +36,8 @@
 <script>
 import BaseDialog from './BaseDialog.vue';
 export default {
-  components: { BaseDialog }, 
+    components: { 'base-dialog': BaseDialog }, 
+
     inject: ['addProduct'],
 
     data(){
